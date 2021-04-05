@@ -1,4 +1,3 @@
 # ObjektOrientiertesProgrammieren
-Erstellt mit Clion.
 
-Es wurde mingw-w64 verwendet
+Created with Clion, CMake and mingw-w64
