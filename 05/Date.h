@@ -19,13 +19,13 @@ private:
 public:
     Date(const int year, const int month, const int day);
 
-    Date();
-
     int get_year() const;
 
     int get_month() const;
 
     int get_day() const;
+
+    void setYear(const int _year); //just to test copy
 
 };
 

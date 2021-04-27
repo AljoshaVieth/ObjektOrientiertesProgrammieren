@@ -62,7 +62,9 @@ namespace hfu {
         return _day;
     }
 
-
+    void Date::setYear(const int _year) {
+        year = _year;
+    }
 
 
 }

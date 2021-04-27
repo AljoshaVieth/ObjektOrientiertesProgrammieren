@@ -8,7 +8,9 @@ namespace hfu {
 
 #include "Friends.h"
 
-    Friends::Friends(const std::string *names, int size) : names(set_names(names, size)), size(validate_size(size)) {}
+    Friends::Friends(std::string *names, int size) : names(validate_names(names, size)), size(validate_size(size)) {
+        std::cout << "ctr called" << std::endl;
+    }
 
     Friends::Friends() : Friends(nullptr, 0) {}
 
@@ -34,8 +36,7 @@ namespace hfu {
         return _size;
     }
 
-    std::string *Friends::set_names(const std::string *_names, int _size) {
-
+    std::string *Friends::validate_names(const std::string *_names, int _size) {
         if (_size > 0) {
             std::string *copy = new std::string[_size];
             for (int i = 0; i <= size; i++) {
@@ -45,6 +46,20 @@ namespace hfu {
         }
         return nullptr;
     }
+
+
+    void Friends::set_names(const int &_test) {
+        std::cout << _test << std::endl;
+        //Friends::names = _names;
+       // Friends::size = _size;
+        //this->size = _size;
+    }
+
+    /*
+    void Friends::change_friend(const std::string &_name, const int &_position) {
+        names[_position] = _name;
+    }
+     */
 
 
 }

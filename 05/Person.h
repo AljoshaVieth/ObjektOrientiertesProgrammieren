@@ -30,6 +30,10 @@ public:
 
     bool compare(const Person &other) const;
 
+    void set_last_name(const std::string &_last_name); //just to test copy
+
+    void set_born(const Date &_date); //just to test copy
+
 };
 
 

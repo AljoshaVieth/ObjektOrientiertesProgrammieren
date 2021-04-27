@@ -43,5 +43,13 @@ namespace hfu {
         return last_name < other.get_last_name();
     }
 
+    void Person::set_last_name(const std::string &_last_name) {
+        last_name = _last_name;
+    }
+
+    void Person::set_born(const Date &_date) {
+        birthdate = _date;
+    }
+
 
 }
