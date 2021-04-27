@@ -10,15 +10,19 @@
 
 class Friends {
 private:
-    std::string *names;
+    const std::string *names;
     int size;
 
     int validate_size(const int _size);
 
 public:
-    Friends(std::string *names, int size);
+
+public:
+    Friends(const std::string *names, int size);
 
     Friends();
+
+    Friends(const Friends &other);
 
     const std::string *get_names() const;
 
@@ -26,14 +30,14 @@ public:
 
     const std::string &name(int v);
 
-    void set_names(const int &_test);
+    std::string *set_names(const std::string *_names, const int &_size);
 
-    void change_friend(const std::string &_name, const int &_position);
+    void alter_names(const std::string *_names, const int &_size);
 
+    void setNames(const std::string *names);
 
-    std::string *validate_names(const std::string *_names, int _size);
+    void setSize(int size);
 
-    void set_name_on_position(int _position, const std::string &_value);
 };
 
 

@@ -13,20 +13,23 @@ namespace hfu {
     /**
      * Date needs no copy ctr since no pointers or references are used
      */
-    void date_copy_test(){
-        Date date(1998,12,02);
+
+    void date_copy_test() {
+        Date date(1998, 12, 02);
         Date copy = date;
         copy.setYear(2000);
         assert(date.get_year() == 1998);
         assert(copy.get_year() == 2000);
     }
 
+
     /**
      * Person needs no copy ctr since no pointers or references are directly used
      */
-    void person_copy_test(){
-        Date date(1998,12,02);
-        Date other_date(2000,12,02);
+
+    void person_copy_test() {
+        Date date(1998, 12, 02);
+        Date other_date(2000, 12, 02);
         Person person("lastName", "firstName", date);
         Person copy = person;
         copy.set_last_name("otherLastName");
@@ -37,19 +40,16 @@ namespace hfu {
         assert(copy.get_born().get_year() == 2000);
     }
 
+
     void friends_copy_test() {
         std::string names[] = {"Donald", "Daisy"};
-        //std::string other_names[2] = {"Fix", "Foxy"};
+        std::string other_names[] = {"Fix", "Foxy"};
         Friends friends(names, 2);
         Friends other_friends = friends;
-        std::cout << other_friends.get_size() << std::endl;
-        std::cout << "copy created" << std::endl;
-        friends.set_names(2);
-
-
-        //std::cout << friends.get_names()[0] << std::endl;
-       // std::cout << other_friends.get_names()[0] << std::endl;
-
+        friends.alter_names(other_names, 2);
+        // copy ctr needed
+        assert(friends.get_names()[0] == "Fix");
+        assert(other_friends.get_names()[0] == "Donald");
     }
 
 

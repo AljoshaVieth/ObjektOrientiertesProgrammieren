@@ -8,11 +8,13 @@ namespace hfu {
 
 #include "Friends.h"
 
-    Friends::Friends(std::string *names, int size) : names(validate_names(names, size)), size(validate_size(size)) {
-        std::cout << "ctr called" << std::endl;
-    }
+    Friends::Friends(const std::string *names, int size) : names(set_names(names, size)), size(validate_size(size)) {}
 
     Friends::Friends() : Friends(nullptr, 0) {}
+
+    Friends::Friends(const Friends &other) : Friends(other.get_names(), other.get_size()) {
+
+    }
 
     const std::string *Friends::get_names() const {
         return names;
@@ -36,10 +38,10 @@ namespace hfu {
         return _size;
     }
 
-    std::string *Friends::validate_names(const std::string *_names, int _size) {
+    std::string *Friends::set_names(const std::string *_names, const int &_size) {
         if (_size > 0) {
             std::string *copy = new std::string[_size];
-            for (int i = 0; i <= size; i++) {
+            for (int i = 0; i < _size; i++) {
                 copy[i] = _names[i];
             }
             return copy;
@@ -47,20 +49,10 @@ namespace hfu {
         return nullptr;
     }
 
-
-    void Friends::set_names(const int &_test) {
-        std::cout << _test << std::endl;
-        //Friends::names = _names;
-       // Friends::size = _size;
-        //this->size = _size;
+    void Friends::alter_names(const std::string *_names, const int &_size) {
+        this->names = set_names(_names, _size);
+        this->size = _size;
     }
-
-    /*
-    void Friends::change_friend(const std::string &_name, const int &_position) {
-        names[_position] = _name;
-    }
-     */
 
 
 }
-
