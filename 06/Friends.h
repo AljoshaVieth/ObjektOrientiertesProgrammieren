@@ -30,11 +30,14 @@ public:
 
     const std::string *get_names() const;
 
+
     int get_size() const;
 
     const std::string &name(int v);
 
     std::string *set_names(const std::string *_names, const int &_size);
+
+    void copy_array(const std::string *original, const int &original_size, std::string *copy);
 
     void add(const std::string &name);
 
@@ -43,6 +46,8 @@ public:
     bool operator==(const Friends &other) const;
 
     bool operator!=(const Friends &other) const;
+
+
 
 
 };

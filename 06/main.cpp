@@ -42,6 +42,44 @@ namespace hfu {
     }
 
 
+    /**
+     * Since the original ctor has changed, the old tests are here again to ensure it still works
+     * However, to better display the results from this task, these tests are disabled
+     */
+     /*
+    void friends_constructor_test() {
+        std::string names[2] = {"Donald", "Daisy"};
+        Friends friends(names, 2);
+        assert(friends.get_size() == 2);
+        assert(friends.get_names()[0] == "Donald");
+        assert(friends.get_names()[1] == "Daisy");
+        try {
+            Friends no_friends(names, -1);
+            assert(false);
+        }
+        catch (...) {}
+    }
+
+
+    void friends_empty_constructor_test() {
+        std::string names[2] = {"Donald", "Daisy"};
+        Friends friends;
+        assert(friends.get_size() == 0);
+        assert(friends.get_names() != names);
+    }
+
+
+    void friends_constructor_altered_names_test() {
+        std::string names[2] = {"Donald", "Daisy"};
+        Friends friends(names, 2);
+        assert(friends.name(0) == "Donald");
+        names[0] = "Mickey";
+        assert(friends.name(0) == "Donald");
+    }
+      */
+
+
+
 }
 
 int main() {
@@ -52,6 +90,15 @@ int main() {
     std::cout << "end_friendship_test passed" << std::endl;
     hfu::equality_of_friends_test();
     std::cout << "equality_of_friends_test passed" << std::endl;
+    /*
+    std::cout << "testing altered ctr" << std::endl;
+    hfu::friends_constructor_test();
+    std::cout << "friends_constructor_test passed" << std::endl;
+    hfu::friends_empty_constructor_test();
+    std::cout << "friends_empty_constructor_test passed" << std::endl;
+    hfu::friends_constructor_altered_names_test();
+    std::cout << "friends_constructor_altered_names_test passed" << std::endl;
+     */
     std::cout << "terminating" << std::endl;
 
 }

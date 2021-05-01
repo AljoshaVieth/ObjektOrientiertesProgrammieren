@@ -46,20 +46,16 @@ namespace hfu {
     std::string *Friends::set_names(const std::string *_names, const int &_size) {
         if (_size > 0) {
             std::string *copy = new std::string[_size];
-            for (int i = 0; i < _size; i++) {
-                copy[i] = _names[i];
-            }
+            copy_array(_names, _size, copy);
             return copy;
         }
         return nullptr;
     }
 
     void Friends::add(const std::string &name) {
-        std::string *new_names = new std::string[size + 1];
-        for (int i = 0; i < size; i++) {
-            new_names[i] = names[i];
-        }
-        new_names[size] = name;
+        std::string *new_names = new std::string[this->size+1];
+        copy_array(this->names, this->size, new_names);
+        new_names[this->size] = name;
         delete[] names;
         this->names = new_names;
         this->size++;
@@ -87,6 +83,13 @@ namespace hfu {
     }
     bool Friends::operator!=(const Friends &other) const {
         return !friends_are_equal(other);
+    }
+
+
+    void Friends::copy_array(const std::string *original, const int &original_size, std::string *copy) {
+        for (int i = 0; i < original_size; i++) {
+            copy[i] = original[i];
+        }
     }
 
 
