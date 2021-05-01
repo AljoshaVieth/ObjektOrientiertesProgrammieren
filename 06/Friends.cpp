@@ -17,7 +17,7 @@ namespace hfu {
     }
 
     Friends::~Friends() {
-        std::cout << "in dtor... removing " << size << " names" << std::endl;
+        std::cout << "in dtor... removing names array with " << size << " names from heap" << std::endl;
         delete[] names;
     }
 
@@ -68,6 +68,25 @@ namespace hfu {
     void Friends::alter_names(const std::string *_names, const int &_size) {
         this->names = set_names(_names, _size);
         this->size = _size;
+    }
+
+    bool Friends::friends_are_equal(const Friends &friends_to_compare_with) const{
+        if(this->size != friends_to_compare_with.get_size()){
+            return false;
+        }
+        for(int i = 0; i<this->size; i++){
+            if(this->names[i] != friends_to_compare_with.get_names()[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    bool Friends::operator==(const Friends &other) const {
+        return friends_are_equal(other);
+    }
+    bool Friends::operator!=(const Friends &other) const {
+        return !friends_are_equal(other);
     }
 
 

@@ -25,6 +25,22 @@ namespace hfu {
         delete other_friends; //explicit dtor, called now (before implicit dtor)
     }
 
+    void equality_of_friends_test(){
+        std::string names[2] = {"Donald", "Daisy"};
+        Friends friends(names, 2);
+        Friends other_friends(names, 2);
+        assert(friends == other_friends);
+        other_friends.add("another one");
+        assert(friends != other_friends);
+        std::string other_names[2] = {"Fix", "Foxy"};
+        Friends some_other_friends(other_names, 2);
+        assert(friends != some_other_friends);
+        std::string some_more_names[2] = {"Donald", "Daisi"};
+        some_other_friends.alter_names(some_more_names, 2);
+        assert(friends != some_other_friends);
+
+    }
+
 
 }
 
@@ -34,6 +50,8 @@ int main() {
     std::cout << "friends_copy_test passed" << std::endl;
     hfu::end_friendship_test();
     std::cout << "end_friendship_test passed" << std::endl;
+    hfu::equality_of_friends_test();
+    std::cout << "equality_of_friends_test passed" << std::endl;
     std::cout << "terminating" << std::endl;
 
 }

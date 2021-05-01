@@ -15,6 +15,8 @@ private:
 
     int validate_size(const int _size);
 
+    bool friends_are_equal(const Friends &friends_to_compare_with) const;
+
 public:
 
 public:
@@ -37,6 +39,10 @@ public:
     void add(const std::string &name);
 
     void alter_names(const std::string *_names, const int &_size);
+
+    bool operator==(const Friends &other) const;
+
+    bool operator!=(const Friends &other) const;
 
 
 };
