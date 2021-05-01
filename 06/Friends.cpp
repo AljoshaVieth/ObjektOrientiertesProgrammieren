@@ -49,6 +49,17 @@ namespace hfu {
         return nullptr;
     }
 
+    void Friends::add(const std::string &name) {
+        std::string *new_names = new std::string[size + 1];
+        for (int i = 0; i < size; i++) {
+            new_names[i] = names[i];
+        }
+        new_names[size] = name;
+        delete names;
+        this->names = new_names;
+        this->size++;
+    }
+
     void Friends::alter_names(const std::string *_names, const int &_size) {
         this->names = set_names(_names, _size);
         this->size = _size;

@@ -10,7 +10,7 @@
 
 class Friends {
 private:
-    const std::string *names;
+    std::string *names;
     int size;
 
     int validate_size(const int _size);
@@ -32,11 +32,10 @@ public:
 
     std::string *set_names(const std::string *_names, const int &_size);
 
+    void add(const std::string &name);
+
     void alter_names(const std::string *_names, const int &_size);
 
-    void setNames(const std::string *names);
-
-    void setSize(int size);
 
 };
 
