@@ -24,6 +24,8 @@ public:
 
     Friends(const Friends &other);
 
+    virtual ~Friends();
+
     const std::string *get_names() const;
 
     int get_size() const;

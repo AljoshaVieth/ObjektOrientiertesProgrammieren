@@ -16,6 +16,11 @@ namespace hfu {
 
     }
 
+    Friends::~Friends() {
+        std::cout << "in dtor... removing " << size << " names" << std::endl;
+        delete[] names;
+    }
+
     const std::string *Friends::get_names() const {
         return names;
     }
@@ -55,7 +60,7 @@ namespace hfu {
             new_names[i] = names[i];
         }
         new_names[size] = name;
-        delete names;
+        delete[] names;
         this->names = new_names;
         this->size++;
     }
