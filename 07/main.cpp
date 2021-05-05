@@ -21,56 +21,70 @@ namespace hfu {
         return out;
     }
 
-    Vector3D operator*(const float &multiplier, const Vector3D &vector3D){
+    Vector3D operator*(const float &multiplier, const Vector3D &vector3D) {
         return Vector3D(vector3D.get_x() * multiplier, vector3D.get_y() * multiplier, vector3D.get_z() * multiplier);
     }
-    Vector3D operator*(const Vector3D &vector3D, const float &multiplier){
+
+    Vector3D operator*(const Vector3D &vector3D, const float &multiplier) {
         return operator*(multiplier, vector3D);
     }
 
-
-    void vector3D_operator_test() {
+    // test + operator
+    void sum_test() {
         Vector3D vector3D(1, 2, 3);
         Vector3D another_vector3D(5, 6, 7);
-
-        // test + operator
         Vector3D sum = vector3D + another_vector3D;
         assert(sum.get_x() == 6);
         assert(sum.get_y() == 8);
         assert(sum.get_z() == 10);
-
-        // test - operator
-        Vector3D difference = another_vector3D - vector3D;
-        assert(difference.get_x() == 4);
-        assert(difference.get_y() == 4);
-        assert(difference.get_z() == 4);
-
-        // test negation ¬
-        Vector3D negated_sum = -sum;
-        assert(negated_sum.get_x() == -6);
-        assert(negated_sum.get_y() == -8);
-        assert(negated_sum.get_z() == -10);
-
-        // test product
-        float multiplier = 5;
-        Vector3D product = multiplier * sum;
-        assert(product.get_x() == 30);
-        assert(product.get_y() == 40);
-        assert(product.get_z() == 50);
-
-        multiplier = -multiplier;
-        Vector3D another_multiplication = difference * multiplier;
-        assert(another_multiplication.get_x() == -20);
-        assert(another_multiplication.get_y() == -20);
-        assert(another_multiplication.get_z() == -20);
-
-        // test << operator
-        std::cout << "sum: " << sum << "\ndifference: " << difference << "\nnegated sum:" << negated_sum << std::endl;
-        std::cout << "product: " << product << std::endl;
-        std::cout << "reverse_multiplication: " << another_multiplication << std::endl;
     }
 
-    void dot_product_test(){
+    // test - operator
+    void subtract_test() {
+        Vector3D vector3D(10, 20, 30);
+        Vector3D another_vector3D(50, 60, -70);
+        Vector3D difference = another_vector3D - vector3D;
+        assert(difference.get_x() == 40);
+        assert(difference.get_y() == 40);
+        assert(difference.get_z() == -100);
+    }
+
+    // test negation with - operator
+    void negation_test() {
+        Vector3D vector3D(40, 60, -80);
+        Vector3D negated_sum = -vector3D;
+        assert(negated_sum.get_x() == -40);
+        assert(negated_sum.get_y() == -60);
+        assert(negated_sum.get_z() == 80);
+    }
+
+    // test * operator
+    void product_test() {
+        // (float * Vector3D)
+        Vector3D vector3D(33, 55, -77);
+        float multiplier = 5;
+        Vector3D product = multiplier * vector3D;
+        assert(product.get_x() == 165);
+        assert(product.get_y() == 275);
+        assert(product.get_z() == -385);
+
+        // (Vector3D * float)
+        Vector3D another_vector3D(11, 22, -33);
+        multiplier = -multiplier;
+        Vector3D another_multiplication = another_vector3D * multiplier;
+        assert(another_multiplication.get_x() == -55);
+        assert(another_multiplication.get_y() == -110);
+        assert(another_multiplication.get_z() == 165);
+    }
+
+    // test << operator
+    void vector3D_as_text_test() {
+        Vector3D vector3D(123, 456, 789);
+        std::cout << vector3D << std::endl;
+
+    }
+
+    void dot_product_test() {
         Vector3D vector3D(22, 33, 44);
         Vector3D another_vector3D(55, 66, 77);
         float dot_product = vector3D * another_vector3D;
@@ -82,10 +96,18 @@ namespace hfu {
 
 int main() {
     std::cout << "starting" << std::endl;
-    hfu::vector3D_operator_test();
-    std::cout << "vector3D_operator_test passed" << std::endl;
+    hfu::sum_test();
+    std::cout << "sum_test passed" << std::endl;
+    hfu::subtract_test();
+    std::cout << "subtract_test passed" << std::endl;
+    hfu::negation_test();
+    std::cout << "negation_test passed" << std::endl;
+    hfu::product_test();
+    std::cout << "product_test passed" << std::endl;
     hfu::dot_product_test();
     std::cout << "dot_product_test passed" << std::endl;
+    hfu::vector3D_as_text_test();
+    std::cout << "vector3D_as_text_test passed" << std::endl;
     std::cout << "terminating" << std::endl;
     return 0;
 }
