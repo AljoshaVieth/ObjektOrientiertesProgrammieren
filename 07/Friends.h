@@ -30,7 +30,6 @@ public:
 
     const std::string *get_names() const;
 
-
     int get_size() const;
 
     const std::string &name(int v);
@@ -47,10 +46,14 @@ public:
 
     bool operator!=(const Friends &other) const;
 
+    Friends &operator=(const Friends &other);
 
 
-
+    std::string &operator[](const int index);
 };
+
+// Using getter methods instead of friend because they exist already.
+std::ostream &operator<<(std::ostream &out, const Friends &friends);
 
 
 #endif //OOP_FRIENDS_H

@@ -1,14 +1,8 @@
-
-
-
-//
-// Created by Aljosha on 04.05.2021.
-//
-
 #ifndef OOP_VECTOR3D_H
 #define OOP_VECTOR3D_H
 
 class Vector3D {
+#include <ostream>
 private:
     const float x, y, z;
 public:
@@ -28,8 +22,12 @@ public:
 
     float operator*(const Vector3D &other);
 
-
 };
 
+std::ostream &operator<<(std::ostream &out, const Vector3D vector3D);
+
+Vector3D operator*(const float &multiplier, const Vector3D &vector3D);
+
+Vector3D operator*(const Vector3D &vector3D, const float &multiplier);
 
 #endif //OOP_VECTOR3D_H

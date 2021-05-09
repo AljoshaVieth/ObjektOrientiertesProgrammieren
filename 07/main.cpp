@@ -5,29 +5,18 @@
 
 
 #include <cassert>
+#include <sstream>
 
 namespace hfu {
 
 #include "Vector3D.h"
+#include "Friends.h"
 
     /**
      * Copy ctor and dtor are not needed since all values are primitive and on stack
      * Assignment isn´t helpful, since all values are const and therefore cannot be reassigned
      */
 
-    // Using getter methods instead of friend because they are needed anyway. A vector is useless hen it´s values are inaccessible
-    std::ostream &operator<<(std::ostream &out, const Vector3D vector3D) {
-        out << "(" << vector3D.get_x() << "," << vector3D.get_y() << "," << vector3D.get_z() << ")";
-        return out;
-    }
-
-    Vector3D operator*(const float &multiplier, const Vector3D &vector3D) {
-        return Vector3D(vector3D.get_x() * multiplier, vector3D.get_y() * multiplier, vector3D.get_z() * multiplier);
-    }
-
-    Vector3D operator*(const Vector3D &vector3D, const float &multiplier) {
-        return operator*(multiplier, vector3D);
-    }
 
     // test + operator
     void sum_test() {
@@ -92,6 +81,40 @@ namespace hfu {
     }
 
 
+    void friends_as_text_test() {
+        std::string names[2] = {"Donald", "Daisy"};
+        Friends friends(names, 2);
+        std::ostringstream out;
+        out << friends << std::endl;
+        std::string text = out.str();
+        assert(text == "Friends(Donald, Daisy)\n"); // don´t forget the new line control character caused by std::endl
+    }
+
+    void friends_assignment_test() {
+        std::string names[2] = {"Donald", "Daisy"};
+        Friends friends(names, 2);
+        Friends some_more_friends;
+        some_more_friends = friends;
+        /*
+         * Since the pointer get´s copied, problems occur when dtor is called, because the second dtor cannot delete something,
+         * which is already deleted.Sadly, these problems cannot be caught because the program just exits with an error code.
+         * All params are private and the getters are const, hence it´s difficult to write a test which displays the alteration of names which would affect original and copy
+         */
+    }
+
+    void friends_index_test() {
+        std::string names[2] = {"Donald", "Daisy"};
+        Friends friends(names, 2);
+        assert(names[1] == "Daisy");
+        try {
+            friends[-222];
+            assert(false);
+        }
+        catch (...) {
+        }
+    }
+
+
 }
 
 int main() {
@@ -108,6 +131,11 @@ int main() {
     std::cout << "dot_product_test passed" << std::endl;
     hfu::vector3D_as_text_test();
     std::cout << "vector3D_as_text_test passed" << std::endl;
+    hfu::friends_as_text_test();
+    std::cout << "friends_as_text_test passed" << std::endl;
+    hfu::friends_assignment_test();
+    std::cout << "friends_assignment_test passed" << std::endl;
+    hfu::friends_index_test();
     std::cout << "terminating" << std::endl;
     return 0;
 }

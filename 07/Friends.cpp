@@ -52,8 +52,9 @@ namespace hfu {
         return nullptr;
     }
 
+
     void Friends::add(const std::string &name) {
-        std::string *new_names = new std::string[this->size+1];
+        std::string *new_names = new std::string[this->size + 1];
         copy_array(this->names, this->size, new_names);
         new_names[this->size] = name;
         delete[] names;
@@ -66,12 +67,13 @@ namespace hfu {
         this->size = _size;
     }
 
-    bool Friends::friends_are_equal(const Friends &friends_to_compare_with) const{
-        if(this->size != friends_to_compare_with.get_size()){
+
+    bool Friends::friends_are_equal(const Friends &friends_to_compare_with) const {
+        if (this->size != friends_to_compare_with.get_size()) {
             return false;
         }
-        for(int i = 0; i<this->size; i++){
-            if(this->names[i] != friends_to_compare_with.get_names()[i]){
+        for (int i = 0; i < this->size; i++) {
+            if (this->names[i] != friends_to_compare_with.get_names()[i]) {
                 return false;
             }
         }
@@ -81,6 +83,7 @@ namespace hfu {
     bool Friends::operator==(const Friends &other) const {
         return friends_are_equal(other);
     }
+
     bool Friends::operator!=(const Friends &other) const {
         return !friends_are_equal(other);
     }
@@ -92,5 +95,27 @@ namespace hfu {
         }
     }
 
+    Friends &Friends::operator=(const Friends &other) {
+        set_names(other.names, other.size);
+        return *this;
+    }
 
+    std::string &Friends::operator[](const int index) {
+        if (index < 0 || index >= size) {
+            throw std::invalid_argument("index not found");
+        }
+        return names[index];
+    }
+
+
+    // Using getter methods instead of friend because they exist already.
+    std::ostream &operator<<(std::ostream &out, const Friends &friends) {
+        std::string friendsAsString = "Friends(";
+        for (int i = 0; i < friends.get_size(); ++i) {
+            friendsAsString = friendsAsString + friends.get_names()[i] + ", ";
+        }
+        friendsAsString = friendsAsString.substr(0, friendsAsString.size() - 2) + ")";
+        out << friendsAsString;
+        return out;
+    }
 }
