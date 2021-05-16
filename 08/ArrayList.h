@@ -7,13 +7,14 @@
 
 #ifndef OOP_ARRAYLIST_H
 #define OOP_ARRAYLIST_H
+
 #include <ostream>
 
 namespace hfu {
     template<typename T>
     class ArrayList {
     private:
-        T *data;
+        T *data; // tried to use unique_prt, however problems occurred when including <memory> to use std::unique_ptr. Another option would be to use ArrayList<T data, int size>, however the size could not be validated
         int size;
 
         int validate_size(const int size);
@@ -52,10 +53,14 @@ namespace hfu {
 
         T &operator[](const int index);
     };
+    template class ArrayList<std::string>;
+    typedef ArrayList<std::string> Friends;
 
 }
+
+
 // Using getter methods instead of friend because they exist already.
-template <typename T>
+template<typename T>
 std::ostream &operator<<(std::ostream &out, const hfu::ArrayList<T> &list);
 
 

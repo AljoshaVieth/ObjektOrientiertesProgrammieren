@@ -129,12 +129,12 @@ namespace hfu {
     // Using getter methods instead of friend because they exist already.
     template <typename T>
     std::ostream &operator<<(std::ostream &out, const ArrayList<T> &list) {
-        std::string friendsAsString = "ArrayList(";
+        std::string arrayAsString = "entries(";
         for (int i = 0; i < list.get_size(); ++i) {
-            friendsAsString = friendsAsString + list.get_data()[i] + ", ";
+            arrayAsString = arrayAsString + list.get_data()[i] + ", ";
         }
-        friendsAsString = friendsAsString.substr(0, friendsAsString.size() - 2) + ")";
-        out << friendsAsString;
+        arrayAsString = arrayAsString.substr(0, arrayAsString.size() - 2) + ")";
+        out << arrayAsString;
         return out;
     }
 }
