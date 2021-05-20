@@ -96,7 +96,12 @@ namespace hfu {
     }
 
     Friends &Friends::operator=(const Friends &other) {
-        set_names(other.names, other.size);
+        if (this == &other) {
+            return *this;
+        }
+        delete[] names;
+        names = new std::string[size];
+        this->names = set_names(other.names, other.size);
         return *this;
     }
 
