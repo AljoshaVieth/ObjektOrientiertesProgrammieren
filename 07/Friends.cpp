@@ -100,7 +100,7 @@ namespace hfu {
             return *this;
         }
         delete[] names;
-        names = new std::string[size];
+        names = new std::string[other.size];
         this->names = set_names(other.names, other.size);
         return *this;
     }
