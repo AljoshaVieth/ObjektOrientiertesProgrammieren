@@ -6,10 +6,7 @@
 #include "Seller.h"
 
 namespace hfu {
-    int Seller::salary() {
-        return pay + commission;
 
-    }
 
     Seller::Seller(int id, const std::string &lastName, const std::string &firstName, int pay, int commission)
             : Employee(id, lastName, firstName), pay(pay), commission(commission) {}
@@ -20,6 +17,10 @@ namespace hfu {
 
     int Seller::getCommission() const {
         return commission;
+    }
+
+    int Seller::salary() const{
+        return commission + pay;
     }
 }
 

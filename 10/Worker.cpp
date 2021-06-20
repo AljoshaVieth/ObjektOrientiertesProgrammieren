@@ -5,7 +5,7 @@
 #include "Worker.h"
 
 namespace hfu {
-    int Worker::salary() {
+    int Worker::salary()const {
         return hourly_rate * hours_worked;
 
     }

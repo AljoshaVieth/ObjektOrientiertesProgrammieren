@@ -6,10 +6,11 @@
 #include "Employee.h"
 
 namespace hfu {
-    int Employee::salary() {
-        return 0;
-    }
 
     Employee::Employee(int id, const std::string &lastName, const std::string &firstName)
             : Person(id, lastName, firstName) {}
+
+    int Employee::salary() const {
+        return 0;
+    }
 }

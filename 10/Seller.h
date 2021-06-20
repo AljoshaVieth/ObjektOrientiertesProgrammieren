@@ -16,7 +16,7 @@ namespace hfu {
     public:
         Seller(int id, const std::string &lastName, const std::string &firstName, int pay, int commission);
 
-        int salary();
+        int salary() const override;
 
         int getPay() const;
 

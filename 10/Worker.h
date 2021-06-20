@@ -15,7 +15,7 @@ namespace hfu {
     public:
         Worker(int id, const std::string &lastName, const std::string &firstName, int hourlyRate, int hoursWorked);
 
-        int salary();
+        int salary() const override;
 
         int getHourlyRate() const;
 

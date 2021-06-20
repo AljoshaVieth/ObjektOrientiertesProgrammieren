@@ -4,7 +4,6 @@
 #include "Person.h"
 
 
-
 #ifndef OOP_EMPLOYEE_H
 #define OOP_EMPLOYEE_H
 
@@ -13,7 +12,7 @@ namespace hfu {
     public:
         Employee(int id, const std::string &lastName, const std::string &firstName);
 
-        int salary();
+        virtual int salary() const;
 
 
     };
