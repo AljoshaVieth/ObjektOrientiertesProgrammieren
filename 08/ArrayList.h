@@ -1,10 +1,7 @@
 
-
-
 //
 // Created by Aljosha on 03.04.2021.
 //
-
 #ifndef OOP_ARRAYLIST_H
 #define OOP_ARRAYLIST_H
 
@@ -53,7 +50,10 @@ namespace hfu {
 
         T &operator[](const int index);
     };
-    template class ArrayList<std::string>;
+
+    template
+    class ArrayList<std::string>;
+
     typedef ArrayList<std::string> Friends;
 
 }

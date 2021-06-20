@@ -28,6 +28,7 @@ public:
     void setYear(const int _year); //just to test copy
 
     bool operator==(const Date &other) const;
+    bool operator!=(const Date &other) const;
 
 };
 

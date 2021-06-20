@@ -9,7 +9,9 @@
 #include <iostream>
 #include <sstream>
 #include "ostream"
+
 namespace hfu {
+
 #include "Date.h"
 
 
@@ -62,6 +64,12 @@ namespace hfu {
         assert(!find(dates, 3, date4));
     }
 
+    void date_comparison_test() {
+        Date date1(2021, 1, 1);
+        Date date2(2020, 12, 31);
+        assert(date1 != date2);
+    }
+
     void friends_as_text_test() {
         // Other as suspected, no problems occurred when switching from class to template. Maybe because of how the operator gets overloaded?
         // if it would not work, one has to overload the operator several times, something like this: std::ostream &operator<<(std::ostream &out, const ArrayList<T> &list) + std::ostream &operator<<(std::ostream &out, const string* &list) {
@@ -106,12 +114,14 @@ int main() {
     std::cout << "find_test passed" << std::endl;
     hfu::date_test();
     std::cout << "date_test passed" << std::endl;
+    hfu::date_comparison_test();
+    std::cout << "date_comparison_test passed" << std::endl;
     hfu::friends_assignment_test();
-    std::cout << "friends_assignment_test passed"<< std::endl;
+    std::cout << "friends_assignment_test passed" << std::endl;
     hfu::friends_as_text_test();
-    std::cout << "friends_as_text_test passed"<< std::endl;
+    std::cout << "friends_as_text_test passed" << std::endl;
     hfu::friends_index_test();
-    std::cout << "friends_indey_test passed"<< std::endl;
+    std::cout << "friends_indey_test passed" << std::endl;
     std::cout << "terminating" << std::endl;
     return 0;
 }

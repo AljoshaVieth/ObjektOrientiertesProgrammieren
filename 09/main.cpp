@@ -6,6 +6,7 @@
 #include <cassert>
 #include <map>
 #include <fstream>
+#include <bits/unique_ptr.h>
 
 
 namespace hfu {
@@ -73,19 +74,16 @@ namespace hfu {
     }
 
 
-    std::map<std::string, int> create_frequencies(const std::string &filename) {
-        std::map<std::string, int> frequencies;
+    std::unique_ptr<std::map<std::string, int>> create_frequencies(const std::string &filename) {
+       auto frequencies = std::make_unique< std::map<std::string, int> >();
+        //std::map<std::string, int> frequencies;
         std::ifstream in(filename);
         assert(in.is_open());
         std::string line;
+        in >> line; // skip first line;
         while (in >> line) {
             if (line.length() > 40) { // filter corrupted lines (somehow, in sees space as a new line)
-                std::string airline = extract_airline(line);
-                int current_counted_flights = 0;
-                if (frequencies.find(airline) != frequencies.end()) {
-                    current_counted_flights = frequencies[airline];
-                }
-                frequencies[airline] = current_counted_flights + 1;
+                (*frequencies)[extract_airline(line)] += 1;
             }
         }
         in.close();
@@ -95,12 +93,9 @@ namespace hfu {
     void create_frequencies_test() {
         std::string filename = "D:/Programming/HFU/MIB 6/OOP/09/flights.csv";
         auto airlines = create_frequencies(filename);
-         assert(airlines["AA"]==32729);
-        int size = airlines.size();
+         assert(airlines->find("AA")->second ==32729);
+        int size = airlines->size();
         std::cout << size << std::endl;
-        std::cout << airlines["AA"] << std::endl;
-
-        //assert(size==18);
     }
 
 

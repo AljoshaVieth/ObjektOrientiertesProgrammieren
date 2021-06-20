@@ -71,8 +71,9 @@ namespace hfu {
         return (this->year == other.get_year() && this->month == other.get_month() && this->day == other.get_day());
     }
 
-
-
+    bool Date::operator!=(const Date &other) const {
+        return !operator==(other);
+    }
 
 
 }
